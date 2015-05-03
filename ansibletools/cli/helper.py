@@ -70,9 +70,9 @@ def save():
     if err:
         name = raw_input("Vault name: ")
     else:
+        print('WARNING: Changing password for %s' % secret_name)
         name = secret_name
 
-    print('WARNING: Changing password for %s' % name)
     password = getpass.getpass("Password: ")
     set_secret(name, password)
 
