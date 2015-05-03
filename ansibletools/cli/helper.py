@@ -23,10 +23,6 @@
 # SOFTWARE.
 #
 
-"""
-ansible-vault password helper.
-"""
-
 from __future__ import print_function
 
 import ConfigParser
