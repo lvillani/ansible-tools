@@ -18,11 +18,11 @@ setup(
     license='MIT',
     classifiers=[
         'Development Status :: 3 - Alpha',
-        'Intended Audience :: Developers',
+        'Intended Audience :: System Administrators',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
-        'Topic :: Software Development :: Build Tools',
+        'Topic :: System :: Systems Administration',
     ],
     keywords='ansible local keyring tools wrapper',
     packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
