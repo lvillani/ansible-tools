@@ -39,33 +39,35 @@ VAULT_HELPER_PATH = os.path.join(HERE, "helper.py")
 #
 
 def ansible():
-    wrap('ansible')
+    wrap(['ansible'], sys.argv[1:])
+
+
+def ansible_local():
+    wrap(['ansible-playbook', '-c', 'local'], sys.argv[1:])
 
 
 def ansible_playbook():
-    wrap('ansible-playbook')
+    wrap(['ansible-playbook'], sys.argv[1:])
 
 
 def ansible_vault():
     if len(sys.argv) < 2:
         subprocess.call(['ansible-vault', '--help'])
+
         return
 
-    if helper_reports_error():
-        fatal("Cannot continue")
-
-    subprocess.call(['ansible-vault', sys.argv[1], '--vault-password-file=%s' % VAULT_HELPER_PATH] + sys.argv[2:])
+    wrap(['ansible-vault', sys.argv[1]], sys.argv[2:])
 
 
 #
 # Support functions
 #
 
-def wrap(cmd):
+def wrap(first, rest):
     if helper_reports_error():
         fatal("Cannot continue.")
 
-    subprocess.call([cmd, '--vault-password-file=%s' % VAULT_HELPER_PATH] + sys.argv[1:])
+    subprocess.call(first + ['--vault-password-file=%s' % VAULT_HELPER_PATH] + rest)
 
 
 def helper_reports_error():
