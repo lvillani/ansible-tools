@@ -1,6 +1,9 @@
 ansible-tools
 =============
 
+![PyPI](https://img.shields.io/pypi/dm/ansible-tools.svg)
+![MIT License](https://img.shields.io/badge/license-mit-blue.svg)
+
 This is a set of wrappers around the `ansible`, `ansible-playbook` and
 `ansible-vault` commands which integrate with the system keyring to retrieve
 the vault password.
