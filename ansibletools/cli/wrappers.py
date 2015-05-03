@@ -74,13 +74,20 @@ def wrap(cmd):
 
 
 def helper_reports_error():
-    """Make sure we can successfully call avault-helper first since ansible-vault
-    isn't smart enough to check its code and will use whatever we output as
-    the encryption key, even in case of errors. We use 'check_output' so that
-    we don't print the password to stdout.
+    """Ansible doesn't check the return code of the helper script we give to the
+    ``--vault-password-file`` command line switch and will happily use
+    whatever we print to standard output when we exit with a non-zero status
+    code, including an empty string.
+
+    This method should be called before invoking ``ansible``,
+    ``ansible-playbook`` or ``ansible-vault`` to make sure that the helper
+    script exits cleanly (i.e.: without errors), so that we don't do stuff
+    with a bogus passphrase.
 
     """
     try:
+        # Use check_output, this way we don't print the unlock password when
+        # there are no errors.
         subprocess.check_output(VAULT_HELPER_PATH)
 
         return False
