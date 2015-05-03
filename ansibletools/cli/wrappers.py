@@ -23,11 +23,6 @@
 # SOFTWARE.
 #
 
-"""Wrapper for both `ansible', `ansible-playbook' and `ansible-vault' which
-integrates with avault-helper to fetch decryption secret from system keyring.
-
-"""
-
 from __future__ import print_function
 
 import os
