@@ -43,7 +43,8 @@ def ansible():
 
 
 def ansible_local():
-    wrap(['ansible-playbook', '-c', 'local'], sys.argv[1:])
+    # See http://stackoverflow.com/a/18255256 for the weird "inline inventory" syntax.
+    wrap(['ansible-playbook', '-c', 'local', '-i', '127.0.0.1,'], sys.argv[1:])
 
 
 def ansible_playbook():
