@@ -43,7 +43,7 @@ latter is securely stored in your keyring.
 At this point you can use the following commands in place of Ansible's to have
 the vault be automatically unlocked with each run:
 
-* `alocal`: in place of `ansible-playbook -c local`
-* `aplay`: in place of `ansible-playbook`
-* `arun`: in place of `ansible`
-* `avault`: in place of `ansible-vault`
+* `alocal`: in place of `ansible-playbook -c local`;
+* `aplay`: in place of `ansible-playbook`;
+* `arun`: in place of `ansible`;
+* `avault`: in place of `ansible-vault`;
