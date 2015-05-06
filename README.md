@@ -34,16 +34,16 @@ run:
 
 Go to the same directory that contains your playbooks and then run:
 
-    avault-helper --save
+    ansible-vault-helper --update
 
 You will be prompted for a vault name (which can be anything) and the unlock
 password. The former is stored in `ansible.cfg` alongside your playbooks, the
 latter is securely stored in your keyring.
 
-At this point you can use the following commands in place of Ansible's to have
-the vault be automatically unlocked with each run:
+At this point you can run Ansible as usual but precede the command with
+`vaultify`. That is, to start a playbook run:
 
-* `alocal`: in place of `ansible-playbook -c local`;
-* `aplay`: in place of `ansible-playbook`;
-* `arun`: in place of `ansible`;
-* `avault`: in place of `ansible-vault`;
+    vaultify ansible-playbook site.yml
+
+We also ship a tool to easily apply a playbook on the current system called
+`ansible-local` which is composable with `vaultify`.

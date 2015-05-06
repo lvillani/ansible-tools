@@ -43,7 +43,7 @@ KEYRING_SERVICE = "ansible-vault"
 def main():
     args = parse_args()
 
-    if args.save:
+    if args.update:
         save()
         return
 
@@ -60,7 +60,7 @@ def main():
 
 def parse_args():
     args = argparse.ArgumentParser()
-    args.add_argument("-s", "--save", action="store_true", help="Prompts for a password and stores it in the keyring")
+    args.add_argument("-u", "--update", action="store_true", help="Stores/Updates a vault unlock password in the keyring, saving the association in ansible.cfg")
 
     return args.parse_args()
 

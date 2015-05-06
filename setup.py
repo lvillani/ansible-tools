@@ -29,11 +29,9 @@ setup(
     install_requires=['keyring'],
     entry_points={
         'console_scripts': [
-            'alocal=ansibletools.cli.wrappers:ansible_local',
-            'aplay=ansibletools.cli.wrappers:ansible_playbook',
-            'arun=ansibletools.cli.wrappers:ansible',
-            'avault=ansibletools.cli.wrappers:ansible_vault',
-            'avault-helper=ansibletools.cli.helper:main',
+            'ansible-local=ansibletools.cli.ansible_local:main',
+            'ansible-vault-helper=ansibletools.cli.ansible_vault_helper:main',
+            'vaultify=ansibletools.cli.vaultify:main',
         ],
     },
 )
