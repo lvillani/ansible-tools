@@ -47,3 +47,13 @@ At this point you can run Ansible as usual but precede the command with
 
 We also ship a tool to easily apply a playbook on the current system called
 `ansible-local` which is composable with `vaultify`.
+
+
+# Aliases
+
+Here's a list of handy shell aliases to make your life easier. They were
+tested on fish but should work also on Bash and Zsh:
+
+    alias v="vault"
+    alias ansible="vaultify ansible"
+    alias ansible-playbook="vaultify ansible-playbook"
