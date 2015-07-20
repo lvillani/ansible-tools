@@ -29,18 +29,34 @@ import os.path
 import subprocess
 import sys
 
-HERE = os.path.abspath(os.path.dirname(__file__))
-VAULT_HELPER_PATH = os.path.join(HERE, "cli", "ansible_vault_helper.py")
-
 
 def wrap(cli):
-    if helper_reports_error():
-        fatal("Cannot continue.")
+    helper_path = vault_helper_path()
+    if helper_reports_error(helper_path):
+        fatal("Unable to run ansible-vault-helper. Cannot continue.")
 
-    subprocess.call([sys.argv[1]] + ['--vault-password-file=%s' % VAULT_HELPER_PATH] + sys.argv[2:])
+    subprocess.call([sys.argv[1]] + ['--vault-password-file=%s' % helper_path] + sys.argv[2:])
 
 
-def helper_reports_error():
+def vault_helper_path():
+    p = which("ansible-vault-helper")
+    if not p:
+        fatal("Cannot find ansible-vault-helper in your $PATH or it isn't executable. Aborting")
+
+    return p
+
+
+def which(exe):
+    for p in os.environ["PATH"].split(os.path.pathsep):
+        full_path = os.path.join(p, exe)
+
+        if os.path.isfile(full_path) and os.access(full_path, os.X_OK):
+            return full_path
+
+    return None
+
+
+def helper_reports_error(helper_path):
     """Ansible doesn't check the return code of the helper script we give to the
     ``--vault-password-file`` command line switch and will happily use
     whatever we print to standard output when we exit with a non-zero status
@@ -55,7 +71,7 @@ def helper_reports_error():
     try:
         # Use check_output, this way we don't print the unlock password when
         # there are no errors.
-        subprocess.check_output(VAULT_HELPER_PATH)
+        subprocess.check_output(helper_path)
 
         return False
     except:
