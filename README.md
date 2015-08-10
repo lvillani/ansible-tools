@@ -1,8 +1,9 @@
 ansible-tools
 =============
 
-![PyPI](https://img.shields.io/pypi/dm/ansible-tools.svg)
-![MIT License](https://img.shields.io/badge/license-mit-blue.svg)
+[![PyPI Version](https://img.shields.io/pypi/v/ansible-tools.svg)](https://pypi.python.org/pypi/ansible-tools)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/ansible-tools.svg)](https://pypi.python.org/pypi/ansible-tools)
+[![MIT License](https://img.shields.io/badge/license-mit-blue.svg)](http://choosealicense.com/licenses/mit/)
 
 This is a set of wrappers around the `ansible`, `ansible-playbook` and
 `ansible-vault` commands which integrate with the system keyring to retrieve
