@@ -9,7 +9,7 @@ with open(path.join(here, 'DESCRIPTION.rst'), encoding='utf-8') as f:
 
 setup(
     name='ansible-tools',
-    version='0.0.6',
+    version='0.0.7',
     description='Keyring integration and local execution wrappers for Ansible',
     long_description=long_description,
     url='https://github.com/lvillani/ansible-tools',
@@ -26,10 +26,11 @@ setup(
     ],
     keywords='ansible local keyring tools wrapper',
     packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
-    install_requires=['keyring'],
+    install_requires=['keyring', 'passlib'],
     entry_points={
         'console_scripts': [
             'ansible-local=ansibletools.cli.ansible_local:main',
+            'ansible-mkpasswd=ansibletools.cli.ansible_mkpasswd:main',
             'ansible-vault-helper=ansibletools.cli.ansible_vault_helper:main',
             'vaultify=ansibletools.cli.vaultify:main',
         ],
