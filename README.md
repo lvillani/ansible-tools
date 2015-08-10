@@ -30,6 +30,18 @@ run:
     sudo pip install ansible-tools
 
 
+# Overview
+
+* `ansible-vault-helper`: Used by users to setup keyring integration, called by Ansible to obtain a
+  Vault unlock password.
+* `vaultify`: Wraps Ansible commands such as `ansible`, `ansible-playbook` and `ansible-playbook` so
+  that the Vault is automatically unlocked with the password stored in the system's keyring.
+* `ansible-local`: Wrapper to run Ansible locally.
+* `ansible-mkpasswd`: Generates a crypted password that can be used with the user module (see also
+  [here](http://docs.ansible.com/ansible/faq.html#how-do-i-generate-crypted-passwords-for-the-user-
+  module))
+
+
 # Usage
 
 Go to the same directory that contains your playbooks and then run:
