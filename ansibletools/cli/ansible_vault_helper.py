@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python
 #
 # The MIT License (MIT)
 #
@@ -23,9 +23,8 @@
 # SOFTWARE.
 #
 
-from __future__ import print_function
+from __future__ import absolute_import, division, print_function, unicode_literals
 
-import ConfigParser
 import argparse
 import getpass
 import os
@@ -33,6 +32,7 @@ import os.path
 import sys
 
 import keyring
+from six.moves import configparser
 
 
 CFG_OPTION = "name"
@@ -100,7 +100,7 @@ def load_ansible_cfg():
     file does not exist, it returns an empty ConfigParser object instead.
 
     """
-    c = ConfigParser.ConfigParser()
+    c = configparser.ConfigParser()
 
     if is_ansible_cfg_there():
         c.read(get_ansible_cfg_path())

@@ -1,3 +1,5 @@
+from __future__ import absolute_import, division, print_function, unicode_literals
+
 from setuptools import setup, find_packages
 from codecs import open
 from os import path
@@ -22,11 +24,15 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Topic :: System :: Systems Administration',
     ],
     keywords='ansible local keyring tools wrapper',
     packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
-    install_requires=['keyring', 'passlib'],
+    install_requires=['keyring', 'passlib', 'six'],
     entry_points={
         'console_scripts': [
             'ansible-local=ansibletools.cli.ansible_local:main',
