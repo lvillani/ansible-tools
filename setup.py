@@ -11,7 +11,7 @@ with open(path.join(here, "DESCRIPTION.rst"), encoding="utf-8") as f:
 
 setup(
     name="ansible-tools",
-    version="0.0.7",
+    version="0.1.0",
     description="Keyring integration and local execution wrappers for Ansible",
     long_description=long_description,
     url="https://github.com/lvillani/ansible-tools",
