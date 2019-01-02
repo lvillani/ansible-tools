@@ -60,7 +60,12 @@ def main():
 
 def parse_args():
     args = argparse.ArgumentParser()
-    args.add_argument("-u", "--update", action="store_true", help="Stores/Updates a vault unlock password in the keyring, saving the association in ansible.cfg")
+    args.add_argument(
+        "-u",
+        "--update",
+        action="store_true",
+        help="Stores/Updates a vault unlock password in the keyring, saving the association in ansible.cfg",
+    )
 
     return args.parse_args()
 
@@ -70,7 +75,7 @@ def save():
     if err:
         name = raw_input("Vault name: ")
     else:
-        print('WARNING: Changing password for %s' % secret_name)
+        print("WARNING: Changing password for %s" % secret_name)
         name = secret_name
 
     password = getpass.getpass("Password: ")
@@ -133,7 +138,11 @@ def get_secret_name():
         return ("", "Unable to find 'vault' section within ansible.cfg")
 
     if not c.has_option(CFG_SECTION, CFG_OPTION):
-        return ("", "Unable to find option '%s' in section '%s' within ansible.cfg" % (CFG_OPTION, CFG_SECTION))
+        return (
+            "",
+            "Unable to find option '%s' in section '%s' within ansible.cfg"
+            % (CFG_OPTION, CFG_SECTION),
+        )
 
     return (c.get(CFG_SECTION, CFG_OPTION), "")
 
