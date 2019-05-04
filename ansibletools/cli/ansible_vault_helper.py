@@ -32,6 +32,7 @@ import os.path
 import sys
 
 import keyring
+import six
 from six.moves import configparser
 
 
@@ -73,7 +74,7 @@ def parse_args():
 def save():
     secret_name, err = get_secret_name()
     if err:
-        name = raw_input("Vault name: ")
+        name = six.moves.input("Vault name: ")
     else:
         print("WARNING: Changing password for %s" % secret_name)
         name = secret_name
