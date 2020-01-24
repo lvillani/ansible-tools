@@ -35,7 +35,11 @@ def wrap(cli):
     if helper_reports_error(helper_path):
         fatal("Unable to run ansible-vault-helper. Cannot continue.")
 
-    command = [sys.argv[1]] + ["--vault-password-file=%s" % helper_path] + sys.argv[2:]
+    # ansible-vault command expects the --vault-password-file argument to be after the action argument
+    if sys.argv[1] == "ansible-vault":
+        command = [sys.argv[1], sys.argv[2]] + ["--vault-password-file=%s" % helper_path] + sys.argv[3:]
+    else:
+        command = [sys.argv[1]] + ["--vault-password-file=%s" % helper_path] + sys.argv[2:]
     sys.exit(subprocess.call(command))
 
 
