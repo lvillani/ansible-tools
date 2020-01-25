@@ -11,7 +11,7 @@ with open(path.join(here, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="ansible-tools",
-    version="0.1.1",
+    version="0.1.2",
     description="Keyring integration and local execution wrappers for Ansible",
     long_description=long_description,
     long_description_content_type="text/markdown",
