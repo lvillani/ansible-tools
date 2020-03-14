@@ -33,8 +33,8 @@ Otherwise, if you're feeling a badass and want to `sudo` your way out, then run:
 - `vaultify`: Wraps Ansible commands such as `ansible`, `ansible-playbook` and `ansible-playbook` so
   that the Vault is automatically unlocked with the password stored in the system's keyring.
 - `ansible-local`: Wrapper to run Ansible locally.
-- `ansible-mkpasswd`: Generates a crypted password that can be used with the user module (see also
-  [here](http://docs.ansible.com/ansible/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module))
+- `ansible-mkpasswd`: Generates an encrypted password that can be used with the user module (see also
+  [here](https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-generate-encrypted-passwords-for-the-user-module))
 
 # Usage
 
