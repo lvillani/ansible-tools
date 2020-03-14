@@ -1,4 +1,4 @@
-from __future__ import absolute_import, division, print_function, unicode_literals
+#!/usr/bin/env python3
 
 from setuptools import setup, find_packages
 from codecs import open
@@ -11,7 +11,7 @@ with open(path.join(here, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="ansible-tools",
-    version="0.1.2",
+    version="0.2.0",
     description="Keyring integration and local execution wrappers for Ansible",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -24,17 +24,17 @@ setup(
         "Environment :: Console",
         "Intended Audience :: System Administrators",
         "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
         "Topic :: System :: Systems Administration",
     ],
     keywords="ansible local keyring tools wrapper",
     packages=find_packages(exclude=["contrib", "docs", "tests*"]),
-    install_requires=["keyring", "passlib", "six"],
+    install_requires=["keyring", "passlib"],
+    python_requires=">=3.5",
     entry_points={
         "console_scripts": [
             "ansible-local=ansibletools.cli.ansible_local:main",

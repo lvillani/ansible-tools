@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # The MIT License (MIT)
 #
@@ -23,17 +23,14 @@
 # SOFTWARE.
 #
 
-from __future__ import absolute_import, division, print_function, unicode_literals
-
 import argparse
+import configparser
 import getpass
 import os
 import os.path
 import sys
 
 import keyring
-import six
-from six.moves import configparser
 
 
 CFG_OPTION = "name"
@@ -74,7 +71,7 @@ def parse_args():
 def save():
     secret_name, err = get_secret_name()
     if err:
-        name = six.moves.input("Vault name: ")
+        name = input("Vault name: ")
     else:
         print("WARNING: Changing password for %s" % secret_name)
         name = secret_name
