@@ -7,11 +7,11 @@
 This is a set of wrappers around the `ansible`, `ansible-playbook` and `ansible-vault` commands
 which integrate with the system keyring to retrieve the vault password.
 
-It should work on both Linux and OS X.
+It should work on both Linux and macOS.
 
 # Installation
 
-If you are on OS X and have Homebrew's Python:
+If you are on macOS and have Homebrew's Python:
 
     pip install ansible-tools
 
