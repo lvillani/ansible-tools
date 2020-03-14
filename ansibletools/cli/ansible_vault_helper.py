@@ -26,9 +26,11 @@
 import argparse
 import configparser
 import getpass
+import inspect
 import os
 import os.path
 import sys
+import typing
 
 import keyring
 
@@ -150,16 +152,26 @@ def fatal(*args):
     sys.exit(1)
 
 
-def get_secret(name):
+def get_secret(name) -> typing.Tuple[str, typing.Optional[str]]:
     """Obtains secret from the keyring."""
     p = keyring.get_password(KEYRING_SERVICE, name)
 
     if not p:
-        howto = "Call %s --set to save a password inside the keyring." % name
+        return (
+            "",
+            inspect.cleandoc(
+                """
+                Unable to obtain password for vault "{}" from the keyring.
 
-        return ("", "Unable to find a password with name %s.\n\n%s" % (name, howto))
+                Call "ansible-vault-helper --update" to add or update the vault's password
+                to the keyring.
+                """.format(
+                    name
+                )
+            ) + "\n",
+        )
 
-    return (p, "")
+    return (p, None)
 
 
 if __name__ == "__main__":
