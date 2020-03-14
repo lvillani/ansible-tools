@@ -26,9 +26,10 @@ import os
 import os.path
 import subprocess
 import sys
+import typing
 
 
-def wrap(cli):
+def wrap(cli: typing.List[str]):
     helper_path = vault_helper_path()
     if helper_reports_error(helper_path):
         fatal("Unable to run ansible-vault-helper. Cannot continue.")
@@ -40,6 +41,7 @@ def wrap(cli):
         )
     else:
         command = [sys.argv[1]] + ["--vault-password-file=%s" % helper_path] + sys.argv[2:]
+
     sys.exit(subprocess.call(command))
 
 
@@ -51,7 +53,7 @@ def vault_helper_path():
     return p
 
 
-def which(exe):
+def which(exe: str) -> typing.Optional[str]:
     for p in os.environ["PATH"].split(os.path.pathsep):
         full_path = os.path.join(p, exe)
 
@@ -61,7 +63,7 @@ def which(exe):
     return None
 
 
-def helper_reports_error(helper_path):
+def helper_reports_error(helper_path: str) -> bool:
     """Ansible doesn't check the return code of the helper script we give to the
     ``--vault-password-file`` command line switch and will happily use
     whatever we print to standard output when we exit with a non-zero status
