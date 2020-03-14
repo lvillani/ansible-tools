@@ -11,20 +11,11 @@ It should work on both Linux and macOS.
 
 # Installation
 
-If you are on macOS and have Homebrew's Python:
+* On macOS, with Homebrew: `brew install lvillani/tap/ansible-tools`;
+* With Pip: `pip install --user ansible-tools`;
 
-    pip install ansible-tools
-
-Otherwise:
-
-    pip install --user ansible-tools
-
-Then make sure to add the local pip's `bin` directory to the `$PATH`. Since it is different on each
-platform, please refer to its documentation.
-
-Otherwise, if you're feeling a badass and want to `sudo` your way out, then run:
-
-    sudo pip install ansible-tools
+It is best, however, to install `ansible-tools` in a Virtualenv, along with the version of Ansible
+you are using.
 
 # Overview
 
