@@ -37,7 +37,9 @@ def wrap(cli):
 
     # ansible-vault command expects the --vault-password-file argument to be after the action argument
     if sys.argv[1] == "ansible-vault":
-        command = [sys.argv[1], sys.argv[2]] + ["--vault-password-file=%s" % helper_path] + sys.argv[3:]
+        command = (
+            [sys.argv[1], sys.argv[2]] + ["--vault-password-file=%s" % helper_path] + sys.argv[3:]
+        )
     else:
         command = [sys.argv[1]] + ["--vault-password-file=%s" % helper_path] + sys.argv[2:]
     sys.exit(subprocess.call(command))
@@ -46,9 +48,7 @@ def wrap(cli):
 def vault_helper_path():
     p = which("ansible-vault-helper")
     if not p:
-        fatal(
-            "Cannot find ansible-vault-helper in your $PATH or it isn't executable. Aborting"
-        )
+        fatal("Cannot find ansible-vault-helper in your $PATH or it isn't executable. Aborting")
 
     return p
 
