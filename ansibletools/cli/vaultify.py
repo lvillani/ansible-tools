@@ -23,10 +23,67 @@
 # SOFTWARE.
 #
 
+import os
+import subprocess
 import sys
-
-from .. import wrap
+import typing
 
 
 def main():
-    wrap(sys.argv[1:])
+    helper_path = vault_helper_path()
+    if helper_reports_error(helper_path):
+        die("Unable to run ansible-vault-helper. Cannot continue.")
+
+    # ansible-vault command expects the --vault-password-file argument to be after the action
+    # argument
+    if sys.argv[1] == "ansible-vault":
+        command = (
+            [sys.argv[1], sys.argv[2]] + ["--vault-password-file=%s" % helper_path] + sys.argv[3:]
+        )
+    else:
+        command = [sys.argv[1]] + ["--vault-password-file=%s" % helper_path] + sys.argv[2:]
+
+    sys.exit(subprocess.call(command))
+
+
+def vault_helper_path() -> str:
+    p = which("ansible-vault-helper")
+    if not p:
+        die("Cannot find ansible-vault-helper in your $PATH or it isn't executable. Aborting")
+
+    return p
+
+
+def which(exe: str) -> typing.Optional[str]:
+    for p in os.environ["PATH"].split(os.path.pathsep):
+        full_path = os.path.join(p, exe)
+
+        if os.path.isfile(full_path) and os.access(full_path, os.X_OK):
+            return full_path
+
+    return None
+
+
+def helper_reports_error(helper_path: str) -> bool:
+    """Ansible doesn't check the return code of the helper script we give to the
+    ``--vault-password-file`` command line switch and will happily use whatever we print to standard
+    output when we exit with a non-zero status code, including an empty string.
+
+    This method should be called before invoking ``ansible``, ``ansible-playbook`` or
+    ``ansible-vault`` to make sure that the helper script exits cleanly (i.e.: without errors), so
+    that we don't do stuff with a bogus passphrase.
+
+    """
+    try:
+        # Use check_output, this way we don't print the unlock password when
+        # there are no errors.
+        subprocess.check_output(helper_path)
+
+        return False
+    except:
+        return True
+
+
+def die(*args) -> typing.NoReturn:
+    print(" ".join(args), file=sys.stderr)
+    sys.exit(1)
