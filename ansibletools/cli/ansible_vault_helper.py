@@ -75,7 +75,7 @@ def save():
     if err:
         name = input("Vault name: ")
     else:
-        print("WARNING: Changing password for %s" % secret_name)
+        print("WARNING: Changing password for '%s'" % secret_name)
         name = secret_name
 
     password = getpass.getpass("Password: ")
