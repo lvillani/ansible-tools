@@ -34,7 +34,7 @@ import typing
 def main():
     helper_path = vault_helper_path()
     if helper_reports_error(helper_path):
-        die("Unable to run ansible-vault-helper. Cannot continue.")
+        fatal("Unable to run ansible-vault-helper. Cannot continue.")
 
     # ansible-vault command expects the --vault-password-file argument to be after the action
     # argument
@@ -55,7 +55,7 @@ def main():
 def vault_helper_path() -> str:
     p = shutil.which("ansible-vault-helper")
     if not p:
-        die(
+        fatal(
             "Cannot find ansible-vault-helper in your $PATH or it isn't executable. Aborting"
         )
 
@@ -82,6 +82,6 @@ def helper_reports_error(helper_path: str) -> bool:
         return True
 
 
-def die(*args) -> typing.NoReturn:
+def fatal(*args) -> typing.NoReturn:
     print(" ".join(args), file=sys.stderr)
     sys.exit(1)
