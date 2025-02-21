@@ -82,6 +82,6 @@ def helper_reports_error(helper_path: str) -> bool:
         return True
 
 
-def fatal(*args) -> typing.NoReturn:
-    print(" ".join(args), file=sys.stderr)
+def fatal(*args: str) -> typing.NoReturn:
+    print(*args, file=sys.stderr)
     sys.exit(1)

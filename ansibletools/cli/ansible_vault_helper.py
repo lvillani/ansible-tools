@@ -157,8 +157,8 @@ def get_secret_name():
     return (name, "")
 
 
-def fatal(*args) -> typing.NoReturn:
-    print(" ".join(args), file=sys.stderr)
+def fatal(*args: str) -> typing.NoReturn:
+    print(*args, file=sys.stderr)
     sys.exit(1)
 
 
