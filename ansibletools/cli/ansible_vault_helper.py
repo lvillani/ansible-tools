@@ -148,7 +148,11 @@ def get_secret_name():
             % (CFG_OPTION, CFG_SECTION),
         )
 
-    return (c.get(CFG_SECTION, CFG_OPTION), "")
+    name = c.get(CFG_SECTION, CFG_OPTION)
+    if not name:
+        return ("", "Vault name cannot be empty.")
+
+    return (name, "")
 
 
 def fatal(*args):
