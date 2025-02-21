@@ -25,6 +25,7 @@
 
 import os
 import os.path
+import shutil
 import subprocess
 import sys
 import typing
@@ -52,23 +53,13 @@ def main():
 
 
 def vault_helper_path() -> str:
-    p = which("ansible-vault-helper")
+    p = shutil.which("ansible-vault-helper")
     if not p:
         die(
             "Cannot find ansible-vault-helper in your $PATH or it isn't executable. Aborting"
         )
 
     return p
-
-
-def which(exe: str) -> typing.Optional[str]:
-    for p in os.environ["PATH"].split(os.path.pathsep):
-        full_path = os.path.join(p, exe)
-
-        if os.path.isfile(full_path) and os.access(full_path, os.X_OK):
-            return full_path
-
-    return None
 
 
 def helper_reports_error(helper_path: str) -> bool:
