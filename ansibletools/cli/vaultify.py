@@ -41,12 +41,12 @@ def main():
     if os.path.basename(sys.argv[1]).startswith("ansible-vault"):
         command = (
             [sys.argv[1], sys.argv[2]]
-            + ["--vault-password-file=%s" % helper_path]
+            + [f"--vault-password-file={helper_path}"]
             + sys.argv[3:]
         )
     else:
         command = (
-            [sys.argv[1]] + ["--vault-password-file=%s" % helper_path] + sys.argv[2:]
+            [sys.argv[1]] + [f"--vault-password-file={helper_path}"] + sys.argv[2:]
         )
 
     sys.exit(subprocess.call(command))

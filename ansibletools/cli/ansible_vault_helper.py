@@ -77,7 +77,7 @@ def save():
         if not name:
             fatal("Vault name cannot be empty.")
     else:
-        print("WARNING: Changing password for '%s'" % secret_name)
+        print(f"WARNING: Changing password for '{secret_name}'")
         name = secret_name
 
     password = getpass.getpass("Password: ")
@@ -146,8 +146,7 @@ def get_secret_name():
     if not c.has_option(CFG_SECTION, CFG_OPTION):
         return (
             "",
-            "Unable to find option '%s' in section '%s' within ansible.cfg"
-            % (CFG_OPTION, CFG_SECTION),
+            f"Unable to find option '{CFG_OPTION}' in section '{CFG_SECTION}' within ansible.cfg",
         )
 
     name = c.get(CFG_SECTION, CFG_OPTION)
@@ -170,12 +169,12 @@ def get_secret(name) -> typing.Tuple[str, typing.Optional[str]]:
         return (
             "",
             inspect.cleandoc(
-                """
-                Unable to obtain password for vault "{}" from the keyring.
+                f"""
+                Unable to obtain password for vault "{name}" from the keyring.
 
                 Call "ansible-vault-helper --update" to add or update the vault's password
                 to the keyring.
-                """.format(name)
+                """
             )
             + "\n",
         )
