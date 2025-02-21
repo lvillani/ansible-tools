@@ -78,7 +78,7 @@ def helper_reports_error(helper_path: str) -> bool:
         subprocess.check_output(helper_path)
 
         return False
-    except:
+    except subprocess.CalledProcessError:
         return True
 
 
