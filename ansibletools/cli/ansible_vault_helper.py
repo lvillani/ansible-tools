@@ -98,10 +98,11 @@ def set_secret(name, secret):
     if not c.has_section("vault"):
         c.add_section("vault")
 
-    c.set(CFG_SECTION, CFG_OPTION, name)
-
-    with open(get_ansible_cfg_path(), "w") as fp:
-        c.write(fp)
+    existing_name = c.get(CFG_SECTION, CFG_OPTION, fallback="")
+    if existing_name != name:
+        c.set(CFG_SECTION, CFG_OPTION, name)
+        with open(get_ansible_cfg_path(), "w") as fp:
+            c.write(fp)
 
     keyring.set_password(KEYRING_SERVICE, name, secret)
 
