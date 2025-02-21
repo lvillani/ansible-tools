@@ -169,10 +169,9 @@ def get_secret(name) -> typing.Tuple[str, typing.Optional[str]]:
 
                 Call "ansible-vault-helper --update" to add or update the vault's password
                 to the keyring.
-                """.format(
-                    name
-                )
-            ) + "\n",
+                """.format(name)
+            )
+            + "\n",
         )
 
     return (p, None)

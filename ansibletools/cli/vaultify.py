@@ -39,10 +39,14 @@ def main():
     # argument
     if os.path.basename(sys.argv[1]).startswith("ansible-vault"):
         command = (
-            [sys.argv[1], sys.argv[2]] + ["--vault-password-file=%s" % helper_path] + sys.argv[3:]
+            [sys.argv[1], sys.argv[2]]
+            + ["--vault-password-file=%s" % helper_path]
+            + sys.argv[3:]
         )
     else:
-        command = [sys.argv[1]] + ["--vault-password-file=%s" % helper_path] + sys.argv[2:]
+        command = (
+            [sys.argv[1]] + ["--vault-password-file=%s" % helper_path] + sys.argv[2:]
+        )
 
     sys.exit(subprocess.call(command))
 
@@ -50,7 +54,9 @@ def main():
 def vault_helper_path() -> str:
     p = which("ansible-vault-helper")
     if not p:
-        die("Cannot find ansible-vault-helper in your $PATH or it isn't executable. Aborting")
+        die(
+            "Cannot find ansible-vault-helper in your $PATH or it isn't executable. Aborting"
+        )
 
     return p
 
