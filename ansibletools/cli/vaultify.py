@@ -24,6 +24,7 @@
 #
 
 import os
+import os.path
 import subprocess
 import sys
 import typing
@@ -36,7 +37,7 @@ def main():
 
     # ansible-vault command expects the --vault-password-file argument to be after the action
     # argument
-    if sys.argv[1] == "ansible-vault":
+    if os.path.basename(sys.argv[1]).startswith("ansible-vault"):
         command = (
             [sys.argv[1], sys.argv[2]] + ["--vault-password-file=%s" % helper_path] + sys.argv[3:]
         )
