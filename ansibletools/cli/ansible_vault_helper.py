@@ -79,6 +79,10 @@ def save():
         name = secret_name
 
     password = getpass.getpass("Password: ")
+    if not password:
+        print("WARNING: Empty password, not updating keyring entry.")
+        return
+
     set_secret(name, password)
 
 
