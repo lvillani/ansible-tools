@@ -56,7 +56,7 @@ def vault_helper_path() -> str:
     p = shutil.which("ansible-vault-helper")
     if not p:
         fatal(
-            "Cannot find ansible-vault-helper in your $PATH or it isn't executable. Aborting"
+            "Cannot find ansible-vault-helper in your $PATH or it isn't executable."
         )
 
     return p
