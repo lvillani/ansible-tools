@@ -49,6 +49,6 @@ composable with `vaultify`.
 Here's a list of handy shell aliases to make your life easier. They were tested on fish but should
 work also on Bash and Zsh:
 
-    alias v="vault"
+    alias v="vaultify"
     alias ansible="vaultify ansible"
     alias ansible-playbook="vaultify ansible-playbook"
