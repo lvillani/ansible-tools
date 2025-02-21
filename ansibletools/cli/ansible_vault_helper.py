@@ -74,6 +74,8 @@ def save():
     secret_name, err = get_secret_name()
     if err:
         name = input("Vault name: ")
+        if not name:
+            fatal("Vault name cannot be empty.")
     else:
         print("WARNING: Changing password for '%s'" % secret_name)
         name = secret_name
