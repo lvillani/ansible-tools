@@ -28,7 +28,8 @@ import sys
 
 
 def main():
-    return_code = subprocess.call(
-        ["ansible-playbook", "-c", "local", "-i", "127.0.0.1,"] + sys.argv[1:]
+    sys.exit(
+        subprocess.call(
+            ["ansible-playbook", "-c", "local", "-i", "127.0.0.1,"] + sys.argv[1:]
+        )
     )
-    sys.exit(return_code)
