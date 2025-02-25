@@ -20,14 +20,11 @@ classifiers = [
 dependencies = ["keyring>=25.5.0,<26", "passlib>=1.7.4,<2"]
 
 [project.scripts]
-ansible-local = "ansibletools.cli.ansible_local:main"
-ansible-mkpasswd = "ansibletools.cli.ansible_mkpasswd:main"
-ansible-vault-helper = "ansibletools.cli.ansible_vault_helper:main"
-vaultify = "ansibletools.cli.vaultify:main"
+ansible-local = "ansible_tools.cli.ansible_local:main"
+ansible-mkpasswd = "ansible_tools.cli.ansible_mkpasswd:main"
+ansible-vault-helper = "ansible_tools.cli.ansible_vault_helper:main"
+vaultify = "ansible_tools.cli.vaultify:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
-
-[tool.hatch.build.targets.wheel]
-packages = ["ansibletools"]
