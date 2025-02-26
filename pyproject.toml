@@ -1,6 +1,6 @@
 [project]
 name = "ansible-tools"
-version = "0.4.0"
+version = "0.5.0"
 description = "Keyring integration and local execution wrappers for Ansible"
 license = "MIT"
 readme = "README.md"
