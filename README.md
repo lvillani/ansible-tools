@@ -11,7 +11,6 @@ It should work on both Linux and macOS.
 
 # Installation
 
-* On macOS, with Homebrew: `brew install lvillani/tap/ansible-tools`;
 * With Pip: `pip install --user ansible-tools`;
 
 It is best, however, to install `ansible-tools` in a Virtualenv, along with the version of Ansible
